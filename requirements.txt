@@ -22,7 +22,7 @@ Pillow==9.1.1
 pyasn1==0.4.8
 pycparser==2.21
 pydantic==1.9.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyparsing==3.0.9
 python-dateutil==2.8.2
 python-dotenv==0.20.0

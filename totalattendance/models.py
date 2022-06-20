@@ -1,0 +1,32 @@
+from sqlalchemy import Column, String, Integer, Float, DATE
+from utils.database import Base
+
+class TotalAttendance(Base):
+    __tablename__ = "totalAttendance"
+    sno = Column(Integer, primary_key=True, index=True)
+    student = Column(String)
+    year = Column(Integer)
+    dept = Column(String)
+    section = Column(String)
+    updated = Column(DATE) 
+    s1 = Column(Integer, default=0)
+    s1t = Column(Integer, default=0)
+    s2 = Column(Integer, default=0)
+    s2t = Column(Integer, default=0)
+    s3 = Column(Integer, default=0)
+    s3t = Column(Integer, default=0)
+    s4 = Column(Integer, default=0)
+    s4t = Column(Integer, default=0)
+    s5 = Column(Integer, default=0)
+    s5t = Column(Integer, default=0)
+    s6 = Column(Integer, default=0)
+    s6t = Column(Integer, default=0)
+    s7 = Column(Integer, default=0)
+    s7t = Column(Integer, default=0)
+    s8 = Column(Integer, default=0)
+    s8t = Column(Integer, default=0)
+    s9 = Column(Integer, default=0)
+    s9t = Column(Integer, default=0)
+    sX = Column(Integer, default=0)
+    sXt = Column(Integer, default=0)
+    percentage = Column(Float, default=0)

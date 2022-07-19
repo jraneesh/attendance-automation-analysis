@@ -57,11 +57,23 @@ async def refresh(user: schemas.UserLogin, db: Session = Depends(get_db) ):
         if id != user.id:
             return JSONResponse(content={"response":"Unathenticated Request"})
         current_user = db.query(models.User).filter(models.User.id == id).first()
-        if current_user is None or current_user.refresh_token.decode("utf-8")!=user.password:
+        if current_user is None or current_user.refresh_token!=user.password:
             return JSONResponse(content={"response":"Unathenticated Request"})
         current_user.access_token = token.encode_token(0,18,current_user.name,'access_token')
         db.commit()
         return { "id":current_user.id, "access_token": current_user.access_token, "refresh_token": current_user.refresh_token }
+    except Exception as e:
+        raise HTTPException(status_code=401,detail="Unauthorized request")
+
+
+@router.post('/validToken', tags=["users"])
+async def validity(user: schemas.Token, db: Session = Depends(get_db) ):
+    try:
+        name = token.decode_token(user.token,'access_token')
+        current_user = db.query(models.User).filter(models.User.name == name).first()
+        if current_user is None or current_user.access_token!=user.token:
+            return JSONResponse(status_code=404,content={"response":"Invalid Token"})
+        return JSONResponse(status_code=200, content={"response":"Valid Token"})
     except Exception as e:
         raise HTTPException(status_code=401,detail="Unauthorized request")
 

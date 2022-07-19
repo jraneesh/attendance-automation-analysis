@@ -7,6 +7,9 @@ class UserCreate(BaseModel):
     class Config:
         orm_mode = True
 
+class Token(BaseModel):
+    token: str
+
 class UserLogin(BaseModel):
     id : int
     password: str

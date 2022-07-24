@@ -73,10 +73,6 @@ def update_attendance(S,p):
 export_file = open(os.getcwd()+"/storage/CSE/3/B/"+dt.strftime("%Y_%m_%d")+"_data.csv",'a')
 periods = get_timetable(depts[0],years[2],sections[1],dt.weekday())
 TA = list(db.query(today).filter(and_(today.dept==depts[0],today.year==years[2],today.section==sections[1])).all())
-'''for S in TA:
-    St = TD(student=S.student,dept=S.dept,year=S.year,section=S.section)
-    db.add(St)
-db.commit()'''
 for Student in TA:
     update_attendance(Student,periods)
 export_df = pd.DataFrame(export_data)
